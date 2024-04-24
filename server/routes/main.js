@@ -9,7 +9,7 @@ const Post = require('../model/Post.js')
 router.get('', async (req, res) => {
     try {
         const locals = {
-            title: "NodeJs Blog",
+            title: "ink.",
             description: "Simple blog created with NodeJs, Express & MongoDb."
         }
 
@@ -35,6 +35,59 @@ router.get('', async (req, res) => {
         console.log(error)
     }
 });
+
+
+/*
+/ GET /
+/ Post :id
+*/
+router.get('/post/:id', async (req, res) => {
+    try {
+        const slug = req.params.id;
+        const data = await Post.findById({ _id: slug })
+
+        const locals = {
+            title: `ink. - ${data.title}`,
+            description: "Simple blog created with NodeJs, Express & MongoDb."
+        }
+
+        res.render('post', { locals, data });
+    } catch (error) {
+        console.log(error)
+    }
+});
+
+
+/*
+/ POST /
+/ Post - searchterm
+*/
+router.post('/search/', async (req, res) => {
+    try {
+        const locals = {
+            title: `ink. - Search`,
+            description: "Simple blog created with NodeJs, Express & MongoDb."
+        }
+
+        let searchTerm = req.body.searchTerm;
+        let searchNoSpecialChar = searchTerm.replace(/[^a-zA-Z0-9 ]/g, "")
+
+        const data = await Post.find({
+            $or: [
+                { title: { $regex: new RegExp(searchNoSpecialChar, 'i' )}},
+                { body: { $regex: new RegExp(searchNoSpecialChar, 'i' )}}
+            ]
+        })
+
+        res.render("search", {
+            locals,
+            data
+        });
+    } catch (error) {
+        console.log(error)
+    }
+});
+
 
 router.get('/about', (req, res) => {
     res.render('about');

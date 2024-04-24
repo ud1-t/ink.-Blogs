@@ -11,6 +11,9 @@ const PORT = 3000 || process.env.PORT;
 // Connect to DB
 connectDB();
 
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
+
 // Static files for frontend -> css, js, img
 app.use(express.static('public'));
 

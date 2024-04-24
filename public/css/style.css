@@ -295,6 +295,8 @@ img {
     position: absolute;
     top: 0;
     right: 0;
+    margin-top: 2%;
+    margin-right: 16%;
     color: var(--gray-light);
     pad: 15px;
 }
