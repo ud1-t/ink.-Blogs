@@ -33,12 +33,16 @@ input[type="search"],
 select,
 textarea {
     font-family: 'Poppins', sans-serif;
-    font-size: var(--font-size-base);
+    font-size: 1rem;
     display: block;
     box-sizing: border-box;
     width: 100%;
-    padding: 0.7re, 0.75rem;
-    margin-bottom: 2rem;
+    padding: 0.7rem 0.75rem;
+    margin-bottom: 1rem;
+}
+
+textarea {
+    resize: vertical;
 }
 
 .btn {
@@ -307,19 +311,19 @@ img {
     justify-content: space-between;
     align-items: center;
 }
-
+  
 .admin-posts {
-    pad: 0;
+    padding: 0;
     margin: 0;
 }
-
-.admin-posts-controls form {
+  
+.admin-post-controls form {
     display: inline-block;
 }
-
-.admin-posts-controls .btn {
+  
+.admin-post-controls .btn {
     display: inline-block;
-    backdrop-filter: var(--black);
+    background-color: var(--black);
     color: var(--gray-light);
     border: 0;
     text-decoration: none;
@@ -327,9 +331,9 @@ img {
     padding: 4px 8px;
     line-height: 2;
 }
-
+  
 .admin-posts li {
     display: flex;
     justify-content: space-between;
-    padding: 18px 0;
+    padding: 10px 0;
 }
